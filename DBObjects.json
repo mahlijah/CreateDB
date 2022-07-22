@@ -1,0 +1,216 @@
+[  
+  {  
+    "name":"NextGenDB",
+    "collections":{
+                "activity" : 
+                          {  
+                                                 
+                              "Indexes":[
+                                    {
+                                        key: {
+                                            company: 1,
+                                            location: 1,
+                                            uuid: 1
+                                        },
+                                        name: "company_location_uuid",
+                                        unique: true,
+                                        action: "AddIndex"
+                                    },
+                                    {
+                                        key: { 
+                                            businessDate: 1,
+                                            company: 1,
+                                            departments: 1
+                                        },
+                                        name: "businessDate_company_departments",
+                                        unique: false,
+                                        action: "AddIndex"
+                                    },
+                                    {
+                                        key: { 
+                                        checklistId: 1,
+                                        company: 1,
+                                        location: 1,
+                                        businessDate : 1
+                                    },
+                                      name: "checklistId_company_location_businessDate",
+                                      unique: false,
+                                      action: "DropIndex"
+                                  },
+                                  {
+                                        key: { 
+                                            businessDate: 1,
+                                            company: 1,
+                                            location: 1,
+                                            completedPercent: 1
+                                            },
+                                        name: "businessDate_company_location_completedPercent",
+                                        unique: false,
+                                        action: "DropIndex"
+                                  },
+                                  {
+                                      key: { 
+                                        businessDate: 1,
+                                        checklistId: 1,
+                                        company: 1,
+                                        location: 1,
+                                        minRequiredChecks: 1,
+                                        completedPercent:1
+                                  },
+                                    name: "businessDate_checklistId_company_location_minRequiredChecks",
+                                    unique: false,
+                                    action: "AddIndex"
+                                }
+
+                                ],
+                              "ShardKey": {company:1,location:1,uuid:1 }
+                                                            
+                          },
+                  "company" : 
+                          {  
+                                                 
+                              "Indexes":[
+                                    {
+                                        key: {
+                                            name: 1
+                                        },
+                                        name: "company_name",
+                                        unique: true,
+                                        action: "AddIndex"
+                                    }
+                                ]                                                            
+                          },
+                  "schedule":{
+
+                        "Indexes":[
+                            {
+                                key: {
+                                    company: 1
+                                },
+                                name: "company",
+                                unique: true,
+                                action: "UnShardCollection"
+                            }
+                        ]   
+                    },
+                 "check":{
+                            "Indexes":[
+                                {
+                                    key: {
+                                        company: 1
+                                    },
+                                    name: "company",
+                                    unique: true,
+                                    action: "UnShardCollection"
+                                }
+                            ]   
+                        },
+                 "correctiveaction":{
+                            "Indexes":[
+                                {
+                                    key: {
+                                        company: 1
+                                    },
+                                    name: "company",
+                                    unique: true,
+                                    action: "UnShardCollection"
+                                }
+                            ]   
+                        },
+                 "checkpoint":{
+                            "Indexes":[
+                                {
+                                    key: {
+                                        company: 1
+                                    },
+                                    name: "company",
+                                    unique: true,
+                                    action: "UnShardCollection"
+                                }
+                            ]   
+                        },
+                  "checklist_locations__location_checklists":{
+                                   "Indexes":[
+                                       {
+                                           key: {
+                                            "location_checklists": 1
+                                           },
+                                           name: "location_checklists",
+                                           unique: false,
+                                           action: "AddIndex"
+                                       }
+                                   ]   
+                               },
+                 "reportlog":{
+                                "Indexes":[
+                                    {
+                                        key: {
+                                            "timestamp": -1
+                                        },
+                                        name: "reportlog_timestamp",
+                                        unique: false,
+                                        action: "AddIndex"
+                                    }
+                                ]   
+                            },
+                "versionhistory":{
+                                "Indexes":[
+                                    {
+                                        key: {
+                                            "company": 1,
+                                            "model": 1,
+                                            "modelId": 1
+                                        },
+                                        name: "versionhistory_company_model_modelId",
+                                        unique: false,
+                                        action: "AddIndex"
+                                    }
+                                ]   
+                            },
+                  "Default" : 
+                          {  
+                              DefaultCollections:[                                     
+                                    "activitylog", 
+                                    "alertgroup",                                                                                                      
+                                    "correctiveactiongroup", 
+                                    "department",                                  
+                                    "device", 
+                                    "locale", 
+                                    "media", 
+                                    "metrics",                                     
+                                    "policy",  
+                                    "role",                                    
+                                    "subscription",                                   
+                                    "tag", 
+                                    "user",                                    
+                                    "usergroup"
+                                    ] ,                   
+                              "Indexes":[
+                                    {
+                                        key: {
+                                            company: 1                                            
+                                        },
+                                        name: "company",
+                                        unique: false,
+                                        action: "AddIndex"
+                                    }
+                                ],
+                              "ShardKey": {company:1}
+                                                            
+                          }
+                
+            }
+  },
+  {  
+    "name":"IOT",
+    "collections":[  
+      "notused"
+    ]
+  },
+  {  
+    "name":"Logging",
+    "collections":[  
+      "log"
+    ]
+  }
+]
